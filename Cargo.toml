@@ -1,17 +1,16 @@
 [package]
 name = "aprilasr-sys"
 version = "0.1.0"
-edition = "2021"
 authors = ["VHS <vhsdev@tutanota.com>"]
-license = "0BSD"
+edition = "2021"
 links = "aprilasr"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-
-[lib]
-name = "aprilasr_sys"
+description = "Low-level FFI bindings for the april-asr C api (libaprilasr)."
+repository = "https://codeberg.org/vhs/aprilasr-sys"
+keywords = ["nlp", "bindings", "wrapper", "audio", "april"]
+categories = ["external-ffi-bindings", "multimedia", "text-processing"]
+license = "0BSD"
+readme = "README.md"
 
 [build-dependencies]
 bindgen = "0.69.2"

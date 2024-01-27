@@ -1,4 +1,4 @@
-//! System crate for aprilasr speech-to-text library
+//! Low-level FFI bindings for the [april-asr](https://github.com/abb128/april-asr) C api (libaprilasr).
 //!
 //! Documentation: [stable](https://docs.rs/aprilasr-sys/)
 
