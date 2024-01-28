@@ -7,7 +7,7 @@ links = "aprilasr"
 
 description = "Low-level FFI bindings for the april-asr C api (libaprilasr)."
 repository = "https://codeberg.org/vhs/aprilasr-sys"
-keywords = ["nlp", "bindings", "wrapper", "audio", "april"]
+keywords = ["nlp", "bindings", "wrapper", "audio", "neuralnetworks"]
 categories = ["external-ffi-bindings", "multimedia", "text-processing"]
 license = "0BSD"
 readme = "README.md"
