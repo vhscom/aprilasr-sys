@@ -6,18 +6,27 @@ Low-level FFI bindings for the [april-asr](https://github.com/abb128/april-asr) 
 
 Compiles `libaprilasr` from source to `OUT_DIR` using CMake and generates bindings for April API, made available via vendored upstream source pointing at a specific commit sha as defined by the git submodule.
 
+## Requirements
+
+Building requires the following system libraries:
+
+- libonnxruntime
+- libclang
+
+Use `locate` to search for installed libraries. For example, on Linux run command `locate libonnxruntime.so` to determine if the [ONNX Runtime](https://onnxruntime.ai/) is available.
+
 ## Installation
 
 To get the latest unyanked release published to [crates.io]:
 
 ```sh
-cargo add --dev aprilasr-sys
+cargo add aprilasr-sys
 ```
 
 Or get the tip of the development branch via cargo using git:
 
 ```sh
-cargo add --dev --git https://codeberg.org/vhs/aprilasr-sys.git
+cargo add --git https://codeberg.org/vhs/aprilasr-sys.git
 ```
 
 It's also possible to vendor this crate:
@@ -39,7 +48,7 @@ aprilasr-sys = { path = "crates/aprilasr-sys" }
 For a basic usage example see `examples/init.rs` and run command:
 
 ```
-cargo run --examples init
+cargo run --example init
 ```
 
 You should see output like:
@@ -74,7 +83,7 @@ Command requires `bat` and `exa` rust binaries and displays output with syntax h
 
 ## Versioning
 
-Consider using `chrono` to parse the data format unless april-asr adopts [semantic versioning](https://semver.org/):
+Consider using `chrono` to parse the date format unless april-asr adopts [semantic versioning](https://semver.org/):
 
 ```rust
 let date_str = "2023.05.12";
@@ -113,7 +122,7 @@ Steps to package a release of this crate for [crates.io]:
 1. Update git submodule as described in [Vendoring](#vendoring).
 1. Run `cargo build --release` to update generated bindings.
 1. Inspect bindings as described in [Development](#development).
-1. Run `cargo run --examples init` to sanity check bindings.
+1. Run `cargo run --example init` to sanity check bindings.
 1. Run `cargo doc` to generate crate docs and review them.
 1. Bump the package version in `Cargo.toml` manifest.
 1. Run `cargo publish --dry-run` to review your work.
