@@ -120,9 +120,11 @@ This command fetches the latest commits from the submodule's remote repository, 
 Steps to package a release of this crate for [crates.io]:
 
 1. Update git submodule as described in [Vendoring](#vendoring).
+1. Run `cargo clean` to remove existing build artifacts.
 1. Run `cargo build --release` to update generated bindings.
 1. Inspect bindings as described in [Development](#development).
-1. Run `cargo run --example init` to sanity check bindings.
+1. Run `cargo test` to execute unit tests including bindgen.
+1. Run `cargo run --example init` to check example.
 1. Run `cargo doc` to generate crate docs and review them.
 1. Bump the package version in `Cargo.toml` manifest.
 1. Run `cargo publish --dry-run` to review your work.
