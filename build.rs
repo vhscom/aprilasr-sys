@@ -9,6 +9,11 @@ macro_rules! p {
     }
 }
 
+/// Builds April ASR speech-to-text library in C using vendored
+/// CMake file specifically designed for the task. With a known
+/// working CMake build of libaprilasr the script will generate
+/// low-level bindings for April ASR following Rust *-sys crate
+/// conventions in order to decouple higher-level wrappers.
 fn main() {
     // Allow users to set include path as a convenience.
     if let Ok(include_dir) = env::var("APRIL_INCLUDE_DIR") {
