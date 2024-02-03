@@ -14,9 +14,8 @@ mod tests {
     use super::*;
 
     #[test]
-    pub fn it_can_initialize() -> Result<(), String> {
-        let result = unsafe { ffi::aam_api_init(1) };
-        assert_eq!(result, ());
+    pub fn it_can_initialize() -> Result<(), Box<dyn std::error::Error>> {
+        assert_eq!(unsafe { ffi::aam_api_init(1) }, ());
         Ok(())
     }
 }
