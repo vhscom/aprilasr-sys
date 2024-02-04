@@ -1,5 +1,9 @@
 use cmake;
-use std::{env, path::PathBuf};
+use std::{
+    env,
+    path::{Path, PathBuf},
+    process::Command,
+};
 
 /// Use p! to debug as println! is reserved in build files.
 #[allow(unused_macros)]
@@ -18,6 +22,13 @@ fn main() {
     // Allow users to set include path as a convenience.
     if let Ok(include_dir) = env::var("APRIL_INCLUDE_DIR") {
         println!("cargo:include={}", include_dir);
+    }
+
+    // Clone vendored submodule if needed.
+    if !Path::new("vendor/april-asr").exists() {
+        let _ = Command::new("git")
+            .args(&["submodule", "update", "--init", "vendor/april-asr"])
+            .status();
     }
 
     // Only re-build April ASR if the API changes.
