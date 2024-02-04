@@ -134,3 +134,11 @@ Once published visit [docs.rs] to review [crate documentation](https://docs.rs/a
 
 [crates.io]: https://crates.io/
 [docs.rs]: https://docs.rs/
+
+# Rights
+
+Your rights to this work are hereby granted under 0BSD insofar as you agree to abide by Section 5 Paragraph 2 of the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) which defines the term "aggregate":
+
+> A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work, and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an “aggregate” if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation's users beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other parts of the aggregate.
+
+In other words do whatever you want with this crate but, if a larger program is created, such as when these bindings are used to create a high-level wrapper, the terms of the GPL will apply to that larger work.
