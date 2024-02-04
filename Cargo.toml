@@ -5,6 +5,21 @@ authors = ["VHS <vhsdev@tutanota.com>"]
 edition = "2021"
 links = "aprilasr"
 
+include = [
+    "/src",
+    "COPYING",
+    "*.h",
+    "*.c",
+    "*.pc.in",
+    "*.cmake",
+    "*.cpp",
+    "CMakeLists.txt",
+    "README.md",
+    "build.rs",
+    "Cargo.toml",
+    "Cargo.lock",
+]
+
 description = "Low-level FFI bindings for the april-asr C api (libaprilasr)."
 repository = "https://codeberg.org/vhs/aprilasr-sys"
 keywords = ["nlp", "bindings", "wrapper", "audio", "neuralnetworks"]
