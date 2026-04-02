@@ -10,12 +10,13 @@ pub mod ffi {
 
 #[cfg(test)]
 mod tests {
-
     use super::*;
 
+    /// Verifies that FFI bindings compile and aam_api_init is callable
+    /// without crashing. Uses the generated APRIL_VERSION constant
+    /// rather than a hardcoded value.
     #[test]
-    pub fn it_can_initialize() -> Result<(), Box<dyn std::error::Error>> {
-        assert_eq!(unsafe { ffi::aam_api_init(1) }, ());
-        Ok(())
+    fn it_can_initialize() {
+        unsafe { ffi::aam_api_init(ffi::APRIL_VERSION as std::ffi::c_int) };
     }
 }

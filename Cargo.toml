@@ -22,11 +22,11 @@ include = [
 
 description = "Low-level FFI bindings for the april-asr C api (libaprilasr)."
 repository = "https://codeberg.org/vhs/aprilasr-sys"
-keywords = ["nlp", "bindings", "wrapper", "audio", "neuralnetworks"]
+keywords = ["nlp", "ffi", "speech-recognition", "audio", "asr"]
 categories = ["external-ffi-bindings", "multimedia", "text-processing"]
 license = "0BSD"
 readme = "README.md"
 
 [build-dependencies]
-bindgen = "0.69.2"
-cmake = "0.1.50"
+bindgen = "0.71"
+cmake = "0.1.58"

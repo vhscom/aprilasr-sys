@@ -1,4 +1,3 @@
-use cmake;
 use std::{
     env,
     path::{Path, PathBuf},
@@ -24,22 +23,34 @@ fn main() {
         println!("cargo:include={}", include_dir);
     }
 
-    // Clone vendored submodule if needed.
-    if !Path::new("vendor/april-asr").exists() {
-        let _ = Command::new("git")
-            .args(&["submodule", "update", "--init", "vendor/april-asr"])
+    // Initialize vendored submodule if needed.
+    // Check for a file inside the submodule since the directory itself
+    // exists (but empty) in a fresh clone before submodule init.
+    if !Path::new("vendor/april-asr/CMakeLists.txt").exists() {
+        let status = Command::new("git")
+            .args(["submodule", "update", "--init", "vendor/april-asr"])
             .status();
+        if !matches!(status, Ok(s) if s.success()) {
+            panic!(
+                "Failed to initialize vendor/april-asr submodule. \
+                 Run: git submodule update --init vendor/april-asr"
+            );
+        }
     }
 
-    // Only re-build April ASR if the API changes.
+    // Re-build when the API header, wrapper, or cmake config changes.
     println!("cargo:rerun-if-changed=vendor/april-asr/april_api.h");
+    println!("cargo:rerun-if-changed=vendor/april-asr/CMakeLists.txt");
     println!("cargo:rerun-if-changed=wrapper.h");
+    println!("cargo:rerun-if-env-changed=APRIL_INCLUDE_DIR");
 
     // Build April ASR from source using CMake.
-    let dst = cmake::Config::new("vendor/april-asr").build().join("build");
+    // cmake::Config::build() returns the install prefix; libraries
+    // are installed to <prefix>/lib/ by the upstream cmake rules.
+    let dst = cmake::Config::new("vendor/april-asr").build();
 
     // Update linker search paths for local builds.
-    println!("cargo:rustc-link-search=native={}", dst.display());
+    println!("cargo:rustc-link-search=native={}", dst.join("lib").display());
     println!("cargo:rustc-link-lib=aprilasr");
 
     // Configure and generate April ASR bindgen bindings.

@@ -76,10 +76,10 @@ To specify include directory set env `APRIL_INCLUDE_DIR` before running build.
 To inspect bindings generated:
 
 ```sh
-bat $(echo $(exa target/*/build/*/out/bindings.rs) | head -1)
+bat $(ls target/*/build/*/out/bindings.rs | head -1)
 ```
 
-Command requires `bat` and `exa` rust binaries and displays output with syntax highlighting.
+Command requires the `bat` binary and displays output with syntax highlighting.
 
 ## Versioning
 
